@@ -1,0 +1,85 @@
+@import "styles/variaveis.css";
+
+.display {
+  display: flex;
+}
+
+.alinhamento {
+  justify-content: center;
+  align-items: center;
+}
+.gap {
+  gap: 2rem;
+}
+.between {
+  justify-content: space-between;
+}
+.grow_3 {
+  flex-grow: 3;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.section_form {
+  width: 60rem;
+  padding: 3rem;
+  margin: 3rem 0;
+  border-radius: 3rem;
+  background-color: var(--azul-petroleo);
+  box-shadow: 5px 5px 10px var(--azul-petroleo);
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--branco);
+}
+
+.input,
+.select {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.6rem;
+  border: transparent;
+  border-radius: 1rem;
+}
+
+.selecionar {
+  width: 500px;
+}
+
+.div_botao {
+  justify-content: end;
+  margin-top: 1rem;
+}
+
+.div_botao button {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 10rem;
+  font-weight: 700;
+  border: transparent;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.salvar {
+  background-color: var(--salvar);
+}
+
+.salvar:hover {
+  background-color: var(--salvar-hover);
+}
+
+.cancelar {
+  background-color: var(--cancelar);
+}
+
+.cancelar:hover {
+  background-color: var(--cancelar-hover);
+}

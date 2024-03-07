@@ -1,0 +1,40 @@
+.container {
+  background-color: var(--azul-meia-noite);
+  height: 100px;
+  padding: 0 5rem;
+}
+
+.container_menu {
+  flex-direction: row;
+  width: 100%;
+}
+
+.img {
+  width: 130px;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+}
+
+.justify {
+  justify-content: space-between;
+}
+
+.textDecoration {
+  text-decoration: none;
+}
+
+.link {
+  color: var(--branco);
+  padding: 1rem;
+  font-weight: 500;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.link:hover {
+  border-bottom: 1px solid var(--branco);
+}

@@ -1,0 +1,59 @@
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  flex: 1 0 auto;
+  background-image: linear-gradient(to bottom, #0e6655, #abebc6);
+}
+
+.container__row {
+  flex-direction: row;
+  gap: 7rem;
+  width: 70%;
+}
+
+.gap {
+  gap: 2rem;
+}
+
+.container__colunm {
+  flex-direction: column;
+  margin: 3rem 0;
+}
+
+.container__row h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-family: monospace;
+  letter-spacing: 0.3rem;
+  color: var(--branco);
+}
+
+.vantagem {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+}
+
+.img {
+  width: 30rem;
+}
+
+.vantagens {
+  text-align: center;
+}
+
+.vantagens__img {
+  width: 70px;
+  margin-bottom: 0.5rem;
+}
+
+.vantagens__descricao {
+  font-size: 0.9rem;
+  font-weight: 600;
+  width: 130px;
+  line-height: 1.1rem;
+}

@@ -1,0 +1,16 @@
+@import "styles/variaveis.css";
+
+.container {
+  margin: 2rem;
+  border: 1px solid red;
+  flex: 1;
+}
+
+.container h1 {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 900;
+  border-bottom: 0.225rem solid var(--azul-quase-preto);
+}
+
+

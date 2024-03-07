@@ -1,0 +1,19 @@
+@import "styles/variaveis.css";
+
+.container {
+  background-color: var(--azul-petroleo);
+  color: white;
+  border-radius: 1rem 2rem;
+}
+
+.container h3 {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.container span {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  font-size: 3rem;
+}

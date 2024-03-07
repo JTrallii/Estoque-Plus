@@ -1,0 +1,53 @@
+@import "styles/variaveis.css";
+
+.display {
+  display: flex;
+}
+
+.alinhamento {
+  justify-content: center;
+  align-items: center;
+}
+.gap {
+  gap: 2rem;
+}
+.between {
+  justify-content: space-between;
+}
+.flex_endereco {
+  flex-grow: 3;
+}
+
+.flex_numero {
+  flex-grow: 1;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.section_form {
+  width: 60rem;
+  padding: 3rem;
+  margin: 3rem 0;
+  border-radius: 3rem;
+  background-color: var(--azul-petroleo);
+  box-shadow: 5px 5px 10px var(--azul-petroleo);
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--branco);
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.6rem;
+  border: transparent;
+  border-radius: 1rem;
+}

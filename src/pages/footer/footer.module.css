@@ -1,0 +1,36 @@
+.display {
+  display: flex;
+}
+.container {
+  background-color: var(--azul-meia-noite);
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 7rem;
+}
+
+.container__informacao {
+  gap: 0.7rem;
+  flex-direction: column;
+  color: var(--branco);
+}
+
+.container__informacao h2 {
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+}
+
+.align {
+  align-items: center;
+}
+
+.logo {
+  width: 130px;
+}
+
+.container__informacao_social {
+  gap: 0.7rem;
+}
+
+.container__informacao_social img {
+  width: 30px;
+}

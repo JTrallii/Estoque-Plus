@@ -1,0 +1,29 @@
+.display {
+  display: flex;
+}
+
+.container {
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.lista {
+  flex: 1 0 10rem;
+  background-color: var(--azul-profundo);
+  padding: 0.4rem 0;
+  border: 0.1rem solid black;
+  text-decoration: none;
+  color: var(--prata-claro);
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.lista:hover {
+  background-color: var(--azul-quase-preto);
+}
+
+.lista li {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

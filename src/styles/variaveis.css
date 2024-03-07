@@ -1,0 +1,14 @@
+:root {
+  --branco: #ecf0f1;
+  --prata-claro: #d0d3d4;
+  --cinza-claro: #eaecee;
+  --cinza-escuro: #909090;
+  --azul-quase-preto: #212f3d;
+  --azul-profundo: #1c2833;
+  --azul-meia-noite: #17202a;
+  --azul-petroleo: #2c3e50;
+  --salvar: #3498db;
+  --salvar-hover: #2e86c1;
+  --cancelar: #ff0000;
+  --cancelar-hover: #da0000;
+}

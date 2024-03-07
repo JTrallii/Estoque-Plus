@@ -1,0 +1,29 @@
+.container {
+  border: 1px solid green;
+  margin: 5rem;
+}
+
+.block {
+  display: block;
+  border: 1px solid yellow;
+}
+
+.input {
+  min-width: 100%;
+}
+
+.form {
+  width: 80%;
+  border: 1px solid blue;
+}
+
+.display {
+  display: flex;
+  border: 1px solid red;
+  gap: 3rem;
+}
+
+.display div {
+  width: 100%;
+  margin: 1rem;
+}
