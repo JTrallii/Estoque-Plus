@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./modalCadastroUsuario.module.css";
 import imagem_cadastro from "img/imagem_cadastro.png";
-import { IUsuario, carregarUsuarios, salvarUsuarios } from "data/usuarios";
-import { useNavigate } from "react-router-dom";
+import { ICadastro, ILogin, carregarUsuarios, salvarUsuarios } from "data/usuarios";
+
 
 interface ModalCadastroUsuarioProps {
   aoFechar: () => void;
@@ -25,8 +25,6 @@ export default function ModalCadastroUsuario({
   const [formSubmetido, setFormSubmetido] = useState(false);
 
   const usuarios = carregarUsuarios();
-
-  const navigate = useNavigate();
 
   const resetFormulario = () => {
     setNome("");
@@ -61,7 +59,7 @@ export default function ModalCadastroUsuario({
     }
 
     const emailCadastrado = usuarios.some(
-      (usuario: IUsuario) => usuario.email === email
+      (usuario: ILogin) => usuario.email === email
     );
     console.table(emailCadastrado);
     if (emailCadastrado) {
@@ -99,16 +97,15 @@ export default function ModalCadastroUsuario({
       validarPassword(senha);
 
       if (isNomeValido && isEmailValido && isSenhaValido) {
-        const novoUsuario: IUsuario = { nome, email, senha };
+        const novoUsuario: ICadastro = { nome, email, senha };
         const usuariosAtualizados = [...carregarUsuarios(), novoUsuario];
         salvarUsuarios(usuariosAtualizados);
-        navigate("/home");
         resetFormulario();
         aoFechar();
       }
 
     } catch (error: any) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 

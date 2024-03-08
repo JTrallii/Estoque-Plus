@@ -38,3 +38,7 @@
 .link:hover {
   border-bottom: 1px solid var(--branco);
 }
+
+.login {
+  color: red;
+}

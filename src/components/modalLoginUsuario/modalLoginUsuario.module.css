@@ -100,3 +100,8 @@
   background-color: #47a138;
   color: var(--branco);
 }
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}

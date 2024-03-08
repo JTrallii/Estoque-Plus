@@ -1,22 +1,31 @@
 import Botao from "components/botao/Botao";
 import styles from "./header.module.css";
 import logo from "img/logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ModalLoginUsuario from "components/modalLoginUsuario/ModalLoginUsuario";
 import ModalCadastroUsuario from "components/modalCadastroUsuario/modalCadastroUsuario";
+
 
 export default function Header() {
   const [modalLoginUsuario, setModalLoginUsuario] = useState(false);
   const [modalCadastroUsuario, setModalCadastroUsuario] = useState(false);
   const [burguerOpen, setBurguerOpen] = useState(false);
   const [usuario, setUsuario] = useState("");
-  const [usuarioLogado, setUsuarioLogado] = useState("");
+  const [usuarioLogado, setUsuarioLogado] = useState(false);
+
 
   const navigate = useNavigate();
 
-  console.log(modalLoginUsuario);
-  console.log(modalCadastroUsuario);
+  const aoEfetuarLogin = () => {
+    setModalLoginUsuario(false);
+    setUsuarioLogado(true);
+    navigate("/home");
+  };
+
+  const salvarNomeUsuario = (usuarioEncontrado: string) => {
+    setUsuario(usuarioEncontrado);
+  };
 
   return (
     <>
@@ -24,9 +33,7 @@ export default function Header() {
         <div
           className={`${styles.container_menu} ${styles.display} ${styles.justify}`}
         >
-          <Link to={"/"}>
-            <img src={logo} alt="" className={styles.img} />
-          </Link>
+          <img src={logo} alt="" className={styles.img} />
           {!usuarioLogado && (
             <>
               <div className={`${styles.display}`}>
@@ -40,6 +47,8 @@ export default function Header() {
                 <ModalLoginUsuario
                   aberta={modalLoginUsuario}
                   aoFechar={() => setModalLoginUsuario(false)}
+                  aoEfetuarLogin={aoEfetuarLogin}
+                  salvarNomeUsuario={salvarNomeUsuario}
                 />
                 <Botao
                   acaoBotao="login"
@@ -53,6 +62,11 @@ export default function Header() {
                   aoFechar={() => setModalCadastroUsuario(false)}
                 />
               </div>
+            </>
+          )}
+          {usuarioLogado &&(
+            <>
+              <span className={styles.login}>Olá {usuario}</span>
             </>
           )}
         </div>

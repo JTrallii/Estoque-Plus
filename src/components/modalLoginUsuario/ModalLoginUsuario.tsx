@@ -1,25 +1,28 @@
 import { useState } from "react";
 import styles from "./modalLoginUsuario.module.css";
 import imagem_login from "img/imagem_login.png";
-import { IUsuario, carregarUsuarios } from "data/usuarios";
+import { ICadastro, carregarUsuarios } from "data/usuarios";
 import { useNavigate } from "react-router-dom";
 
 interface ModalLoginUsuarioProps {
-  aoFechar:
-    | React.MouseEventHandler<HTMLButtonElement>
-    | React.MouseEventHandler<HTMLDivElement>;
+  aoFechar: () => void;
   aberta: boolean;
+  aoEfetuarLogin: () => void;
+  salvarNomeUsuario: (nome: string) => void;
 }
 
 export default function ModalLoginUsuario({
   aoFechar,
   aberta,
+  aoEfetuarLogin,
+  salvarNomeUsuario
 }: ModalLoginUsuarioProps) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [error, setError] = useState("");
+  const [isEmailValido, setIsEmailValido] = useState(false);
+  const [isSenhaValido, setIsSenhaValido] = useState(false);
 
-  const handleClick: React.MouseEventHandler<HTMLElement> =
-    aoFechar || undefined;
 
   const usuarios = carregarUsuarios();
   const navigate = useNavigate();
@@ -29,16 +32,43 @@ export default function ModalLoginUsuario({
     setSenha("");
   };
 
-  const validaEmail = () => {
-    const emailCadastrado = usuarios.some(
-      (usuario: IUsuario) => usuario.email === email
-    );
+
+  const validaEmail = (email: string): ICadastro | null => {
+    const emailFind = usuarios.find((usuario) => usuario.email === email);
+    setIsEmailValido(!!emailFind);
+
+    return emailFind || null;
   };
 
-  const validaSenha = () => {
-    const senhaCadastrada = usuarios.some(
-      (usuario: IUsuario) => usuario.senha === senha
-    );
+  const validaSenha = (senha: string): boolean => {
+    const senhaFind = usuarios.find((usuario) => usuario.senha === senha);
+    const senhaValido = !!senhaFind;
+
+    setIsSenhaValido(senhaValido);
+    return senhaValido;
+  };
+
+  const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+
+    try {
+      const usuarioEncontrado = validaEmail(email);
+      validaSenha(senha);
+  
+      if (isEmailValido && isSenhaValido) {
+
+        navigate("/home");
+        aoEfetuarLogin();
+
+        if (usuarioEncontrado) {
+          salvarNomeUsuario(usuarioEncontrado.nome);
+        } else {
+          setError("Email ou senha incorretos !");
+        }
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
 
   if (!aberta) {
@@ -49,11 +79,11 @@ export default function ModalLoginUsuario({
     <>
       <div
         className={styles.background__modal}
-        onClick={handleClick}
+        onClick={() => { aoFechar(); resetFormulario(); }}
         aria-hidden="true"
       />
       <div className={styles.janela__modal}>
-        <button className={styles.fechar__modal} onClick={handleClick}>
+        <button className={styles.fechar__modal} onClick={() => { aoFechar(); resetFormulario(); }}>
           X
         </button>
         <div
@@ -65,7 +95,7 @@ export default function ModalLoginUsuario({
             className={styles.modal__container_img}
           />
           <p className={styles.modal__container_p}>LOGIN</p>
-          <form className={`${styles.borda} ${styles.modal__container_form}`}>
+          <form className={`${styles.borda} ${styles.modal__container_form}`} onSubmit={handleSubmit}>
             <label htmlFor="email" className={`${styles.display}`}>
               E-mail:
               <input
@@ -93,8 +123,9 @@ export default function ModalLoginUsuario({
                 onChange={(event) => setSenha(event.target.value)}
               />
             </label>
+            <span className={styles.error}>{error}</span>
             <div className={`${styles.display} ${styles.align}`}>
-              <button>Acessar</button>
+              <button type="submit">Acessar</button>
             </div>
           </form>
         </div>
