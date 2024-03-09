@@ -57,7 +57,7 @@ export default function ModalLoginUsuario({
   
       if (isEmailValido && isSenhaValido) {
 
-        navigate("/home");
+        navigate("/home/vendas");
         aoEfetuarLogin();
 
         if (usuarioEncontrado) {

@@ -1,6 +1,7 @@
 import Botao from "components/botao/Botao";
 import styles from "./header.module.css";
 import logo from "img/logo.png";
+import login from "img/circle-user-round.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ModalLoginUsuario from "components/modalLoginUsuario/ModalLoginUsuario";
@@ -66,7 +67,16 @@ export default function Header() {
           )}
           {usuarioLogado &&(
             <>
-              <span className={styles.login}>Olá {usuario}</span>
+              <div className={`${styles.display} ${styles.justify} ${styles.gap} ${styles.divEstaLogado}`}>
+                <img src={login} alt={login} className={`${styles.imgLogin}`}/>
+                <span className={styles.login}>Olá {usuario}</span>
+                <Botao
+                  acaoBotao="sair"
+                  tipo="secundario"
+                >
+                    Sair
+                </Botao>
+              </div>
             </>
           )}
         </div>

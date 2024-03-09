@@ -18,6 +18,10 @@
   align-items: center;
 }
 
+.gap {
+  gap: 1rem;
+}
+
 .justify {
   justify-content: space-between;
 }
@@ -37,6 +41,14 @@
 
 .link:hover {
   border-bottom: 1px solid var(--branco);
+}
+
+.divEstaLogado {
+  margin: 0 5rem;
+}
+
+.display .imgLogin {
+  width: 50px;
 }
 
 .login {
