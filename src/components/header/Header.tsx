@@ -24,6 +24,11 @@ export default function Header() {
     navigate("/home");
   };
 
+  const aoEfetuarLogout = () => {
+    setUsuarioLogado(false);
+    navigate("/");
+  };
+
   const salvarNomeUsuario = (usuarioEncontrado: string) => {
     setUsuario(usuarioEncontrado);
   };
@@ -73,6 +78,7 @@ export default function Header() {
                 <Botao
                   acaoBotao="sair"
                   tipo="secundario"
+                  onClick={aoEfetuarLogout}
                 >
                     Sair
                 </Botao>

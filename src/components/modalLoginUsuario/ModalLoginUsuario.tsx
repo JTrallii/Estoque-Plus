@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./modalLoginUsuario.module.css";
 import imagem_login from "img/imagem_login.png";
-import { ICadastro, carregarUsuarios } from "data/usuarios";
+import { carregarUsuarios } from "data/usuarios";
 import { useNavigate } from "react-router-dom";
 
 interface ModalLoginUsuarioProps {
@@ -15,14 +15,13 @@ export default function ModalLoginUsuario({
   aoFechar,
   aberta,
   aoEfetuarLogin,
-  salvarNomeUsuario
+  salvarNomeUsuario,
 }: ModalLoginUsuarioProps) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
   const [isEmailValido, setIsEmailValido] = useState(false);
   const [isSenhaValido, setIsSenhaValido] = useState(false);
-
 
   const usuarios = carregarUsuarios();
   const navigate = useNavigate();
@@ -32,39 +31,37 @@ export default function ModalLoginUsuario({
     setSenha("");
   };
 
-
-  const validaEmail = (email: string): ICadastro | null => {
-    const emailFind = usuarios.find((usuario) => usuario.email === email);
-    setIsEmailValido(!!emailFind);
-
-    return emailFind || null;
+  const validaEmail = (email: string) => {
+    const emailFind = usuarios.filter((usuario) => usuario.email === email);
+    if (emailFind.length > 0) {
+      setIsEmailValido(true);
+      salvarNomeUsuario(emailFind[0].nome);
+      return true;
+    }
+    setError("Email ou senha incorretos !");
+    return false;
   };
 
-  const validaSenha = (senha: string): boolean => {
-    const senhaFind = usuarios.find((usuario) => usuario.senha === senha);
-    const senhaValido = !!senhaFind;
-
-    setIsSenhaValido(senhaValido);
-    return senhaValido;
+  const validaSenha = (senha: string) => {
+    const senhaFind = usuarios.filter((usuario) => usuario.senha === senha);
+    if (senhaFind.length > 0) {
+      setIsSenhaValido(true);
+      return senhaFind;
+    }
+    setError("Email ou senha incorretos !");
+    return false;
   };
 
   const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
     try {
-      const usuarioEncontrado = validaEmail(email);
+      validaEmail(email);
       validaSenha(senha);
-  
-      if (isEmailValido && isSenhaValido) {
 
+      if (isEmailValido && isSenhaValido) {
         navigate("/home/vendas");
         aoEfetuarLogin();
-
-        if (usuarioEncontrado) {
-          salvarNomeUsuario(usuarioEncontrado.nome);
-        } else {
-          setError("Email ou senha incorretos !");
-        }
       }
     } catch (error: any) {
       console.log(error.message);
@@ -79,11 +76,20 @@ export default function ModalLoginUsuario({
     <>
       <div
         className={styles.background__modal}
-        onClick={() => { aoFechar(); resetFormulario(); }}
+        onClick={() => {
+          aoFechar();
+          resetFormulario();
+        }}
         aria-hidden="true"
       />
       <div className={styles.janela__modal}>
-        <button className={styles.fechar__modal} onClick={() => { aoFechar(); resetFormulario(); }}>
+        <button
+          className={styles.fechar__modal}
+          onClick={() => {
+            aoFechar();
+            resetFormulario();
+          }}
+        >
           X
         </button>
         <div
@@ -95,7 +101,10 @@ export default function ModalLoginUsuario({
             className={styles.modal__container_img}
           />
           <p className={styles.modal__container_p}>LOGIN</p>
-          <form className={`${styles.borda} ${styles.modal__container_form}`} onSubmit={handleSubmit}>
+          <form
+            className={`${styles.borda} ${styles.modal__container_form}`}
+            onSubmit={handleSubmit}
+          >
             <label htmlFor="email" className={`${styles.display}`}>
               E-mail:
               <input
@@ -108,10 +117,7 @@ export default function ModalLoginUsuario({
                 onChange={(event) => setEmail(event.target.value)}
               />
             </label>
-            <label
-              htmlFor="senha"
-              className={`${styles.display}`}
-            >
+            <label htmlFor="senha" className={`${styles.display}`}>
               Senha:
               <input
                 type="password"
@@ -122,8 +128,8 @@ export default function ModalLoginUsuario({
                 value={senha}
                 onChange={(event) => setSenha(event.target.value)}
               />
+              <span className={styles.error}>{error}</span>
             </label>
-            <span className={styles.error}>{error}</span>
             <div className={`${styles.display} ${styles.align}`}>
               <button type="submit">Acessar</button>
             </div>
