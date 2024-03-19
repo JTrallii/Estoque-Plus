@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "fornecedor": "JoãoEletro"
+  },
+  {
+    "id": 2,
+    "fornecedor": "Bela Ingrid Modas"
+  },
+  {
+    "id": 3,
+    "fornecedor": "Mercado União"
+  },
+  {
+    "id": 4,
+    "fornecedor": "Farmácia Lider"
+  },{
+    "id": 5,
+    "fornecedor": "Cacau Material de Construções"
+  }
+]

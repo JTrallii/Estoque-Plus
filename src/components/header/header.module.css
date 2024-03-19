@@ -52,5 +52,6 @@
 }
 
 .login {
-  color: red;
+  color: var(--verde);
+  font-size: 1.6rem;
 }

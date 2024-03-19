@@ -1,0 +1,67 @@
+@import "styles/variaveis.css";
+
+
+.section__container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.input {
+  width: 200px;
+  height: 60px;
+  border: none;
+  font-size: 2rem;
+  text-align: left;
+  padding-left: 10px;
+  display: block;
+}
+
+.label {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.container__descricao__input {
+  width: 900px;
+  height: 60px;
+  border: none;
+  font-size: 2rem;
+  display: block;
+}
+
+.display {
+  display: flex;
+}
+
+.direction__row {
+  flex-direction: row;
+}
+
+.justify__center {
+  justify-content: center;
+}
+
+.gap {
+  gap: 1rem;
+}
+
+.container__descricao__ul {
+  padding: 8px 0;
+  max-height: 30vh;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+
+.container__descricao__ul li {
+  border-bottom: 1px solid var(--azul-petroleo);
+  padding: 10px 0;
+}
+
+.container__descricao {
+  position: relative;
+}

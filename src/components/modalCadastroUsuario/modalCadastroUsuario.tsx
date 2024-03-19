@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styles from "./modalCadastroUsuario.module.css";
 import imagem_cadastro from "img/imagem_cadastro.png";
-import { ICadastro, ILogin, carregarUsuarios, salvarUsuarios } from "data/usuarios";
+import { carregarUsuarios, salvarUsuarios } from "data/usuarios";
+import { ICadastro, ILogin } from "interface/IIlogin";
 
 
 interface ModalCadastroUsuarioProps {
@@ -99,7 +100,7 @@ export default function ModalCadastroUsuario({
       if (isNomeValido && isEmailValido && isSenhaValido) {
         const novoUsuario: ICadastro = { nome, email, senha };
         const usuariosAtualizados = [...carregarUsuarios(), novoUsuario];
-        salvarUsuarios(usuariosAtualizados);
+        salvarUsuarios({ usuarios: usuariosAtualizados });
         resetFormulario();
         aoFechar();
       }

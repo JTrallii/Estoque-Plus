@@ -1,30 +1,25 @@
-import styles from "./vendas.module.css";
-import produtos from "data/estoque.json";
+import { useState } from "react";
+import { IProduto } from "interface/IProduto";
+import InputVendas from "./venda/InputVenda";
+import ListaVendas from "./listaVendas/ListaVendas";
+
 
 export default function Vendas() {
+
+  const [produtosSelecionados, setProdutosSelecionados] = useState<IProduto[]>([]);
+
+  const adicionarProduto = (produto: IProduto) => {
+    const novoProduto = { ...produto };
+    setProdutosSelecionados([...produtosSelecionados, novoProduto]);
+    console.table(novoProduto);
+    console.log(produtosSelecionados);
+  };
+
+
   return (
-    <section className={`${styles.display} ${styles.container}`}>
-      <div className={`${styles.display}`}>
-        <div className={`${styles.direction} ${styles.display}`}>
-          <label className={`${styles.label}`}>Quantidade</label>
-          <input className={`${styles.input}`} type="text" />
-        </div>
-        <div className={`${styles.direction} ${styles.display}`}>
-          <label className={`${styles.label}`}>Descrição</label>
-          <select className={`${styles.select}`} name="" id="">
-            <option defaultValue="Selecione um item">Selecione um item</option>
-            {produtos.map((produto) => (
-              <option value={produto.produto} key={produto.id}>
-                {produto.produto}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={`${styles.direction} ${styles.display}`}>
-          <label className={`${styles.label}`}>Preço</label>
-          <input className={`${styles.input}`} type="text" />
-        </div>
-      </div>
-    </section>
+    <main>
+      <InputVendas adicionarProduto={adicionarProduto} />
+      <ListaVendas />
+    </main>
   );
 }

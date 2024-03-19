@@ -5,10 +5,10 @@ import Fornecedor from "pages/itens/fornecedor/Fornecedor";
 import Produto from "pages/itens/produto/Produto";
 import PaginaPadrao from "pages/paginaPadrao/PaginaPadrao";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Vendas from "pages/itens/vendas/Vendas";
 import Compras from "pages/itens/compras/Compras";
 import Caixa from "pages/itens/caixa/Caixa";
 import Inicio from "pages/inicio/Inicio";
+import Vendas from "pages/itens/vendas/Vendas";
 
 export default function Router() {
   return (

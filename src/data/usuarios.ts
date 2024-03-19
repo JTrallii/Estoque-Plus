@@ -1,13 +1,6 @@
-export interface ILogin {
-  email: string;
-  senha: string;
-}
+import { ICadastro } from "interface/IIlogin";
 
-export interface ICadastro extends ILogin {
-  nome: string
-}
-
-export function salvarUsuarios(usuarios: ICadastro[]): void {
+export function salvarUsuarios({ usuarios }: { usuarios: ICadastro[]; }): void {
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 }
 
