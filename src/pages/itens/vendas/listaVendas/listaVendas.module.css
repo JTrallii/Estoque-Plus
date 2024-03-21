@@ -1,0 +1,49 @@
+@import "styles/variaveis.css";
+
+.container {
+  margin: 1rem auto;
+}
+
+.container__list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.titulo__tabela {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0.5rem;
+}
+
+.tabela {
+  border-collapse: collapse;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.tabela th, .tabela td {
+  width: 150px;
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.tabela th:nth-child(2),
+.tabela td:nth-child(2) {
+  width: 80%;
+}
+
+.tabela th {
+  font-weight: 900;
+}
+
+.tabela__descrição {
+  width: 300px;
+  background-color: green;
+}
+
+.borda {
+  border: 1px solid red;
+}

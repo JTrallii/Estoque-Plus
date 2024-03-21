@@ -36,6 +36,12 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
     setInputQuantidade(quantidade.toString());
     setItemFiltrado([]);
   };
+
+  const handleAdd = () => {
+    setInputProduto("");
+    setInputQuantidade("");
+    setInputPreco("");
+  };
   
   const handleClear = () => {
     setInputProduto("");
@@ -110,7 +116,7 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
         </div>
       </div>
       <div className={`${styles.display} ${styles.justify__center}`}>
-        <Botao acaoBotao="adicionar" tipo="primario">
+        <Botao acaoBotao="adicionar" tipo="primario" onClick={handleAdd}>
           Adicionar
         </Botao>
         <Botao acaoBotao="limpar" tipo="secundario" onClick={handleClear}>

@@ -19,7 +19,7 @@ export default function Vendas() {
   return (
     <main>
       <InputVendas adicionarProduto={adicionarProduto} />
-      <ListaVendas />
+      <ListaVendas produtos={produtosSelecionados} />
     </main>
   );
 }
