@@ -6,8 +6,10 @@
 
 .container__list {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  height: 350px;
+  overflow-y: auto;
 }
 
 .titulo__tabela {
@@ -37,11 +39,6 @@
 
 .tabela th {
   font-weight: 900;
-}
-
-.tabela__descrição {
-  width: 300px;
-  background-color: green;
 }
 
 .borda {

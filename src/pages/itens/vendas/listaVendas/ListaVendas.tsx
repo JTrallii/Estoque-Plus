@@ -1,8 +1,8 @@
 import styles from "./listaVendas.module.css";
-import { IProduto } from "interface/IProduto";
+import { IValorTotal } from "interface/IProduto";
 
 interface ListaVendasProps {
-  produtos: IProduto[];
+  produtos: IValorTotal[];
 }
 
 export default function ListaVendas({ produtos }: ListaVendasProps) {
@@ -23,7 +23,7 @@ export default function ListaVendas({ produtos }: ListaVendasProps) {
               <tr key={index}>
                 <td>{produto.quantidade}</td>
                 <td>{produto.produto}</td>
-                <td>{produto.custo_venda}</td>
+                <td>R$ {produto.valorTotal?.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>

@@ -2,11 +2,11 @@ import { useState } from "react";
 import styles from "./inputVenda.module.css";
 import produtos from "data/estoque.json";
 import { IItem } from "interface/IItem";
-import { IProduto } from "interface/IProduto";
+import { IProduto, IQuantProduto, IValorTotal } from "interface/IProduto";
 import Botao from "components/botao/Botao";
 
 interface InputVendasProps {
-  adicionarProduto: (produto: IProduto) => void;
+  adicionarProduto: (produto: IValorTotal) => void;
 }
 
 export default function InputVendas({ adicionarProduto }: InputVendasProps) {
@@ -14,6 +14,8 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
   const [itemFiltrado, setItemFiltrado] = useState<IItem[]>([]);
   const [inputQuantidade, setInputQuantidade] = useState("");
   const [inputPreco, setInputPreco] = useState("");
+  const [qtdVendida, setQtdVendida] = useState("");
+  const [itemSelecionado, setItemSelecionado] = useState<IProduto | null>(null);
 
   const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const value = ev.target.value;
@@ -25,28 +27,35 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
     setItemFiltrado(produtoFiltrado);
   };
 
-  const handleItemClick = (
-    produto: string,
-    custo_venda: number,
-    quantidade: number
-  ) => {
-    adicionarProduto({ produto, custo_venda, quantidade });
-    setInputProduto(produto);
-    setInputPreco(custo_venda.toString());
-    setInputQuantidade(quantidade.toString());
+  const handleItemClick = (item: IProduto) => {
+    setInputProduto(item.produto);
+    setInputPreco(item.custo_venda.toString());
+    setInputQuantidade(item.quantidade.toString());
+    setItemSelecionado(item);
     setItemFiltrado([]);
   };
 
   const handleAdd = () => {
-    setInputProduto("");
-    setInputQuantidade("");
-    setInputPreco("");
+    if (itemSelecionado) {
+      adicionarProduto({
+        produto: itemSelecionado.produto,
+        custo_venda: itemSelecionado.custo_venda,
+        quantidade: +qtdVendida,
+        valorTotal: +qtdVendida * itemSelecionado.custo_venda
+      });
+      setInputProduto("");
+      setInputQuantidade("");
+      setInputPreco("");
+      setQtdVendida("");
+      setItemSelecionado(null);
+    }
   };
-  
+
   const handleClear = () => {
     setInputProduto("");
     setInputQuantidade("");
     setInputPreco("");
+    setQtdVendida("");
   };
 
   return (
@@ -54,6 +63,20 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
       <div
         className={`${styles.display} ${styles.direction__row} ${styles.justify__center}`}
       >
+        <div>
+          <label className={`${styles.label}`} htmlFor="estoque">
+            ESTOQUE
+          </label>
+          <input
+            className={`${styles.input}`}
+            type="text"
+            name="estoque"
+            id="estoque"
+            value={inputQuantidade}
+            onChange={(ev) => setInputQuantidade(ev.target.value)}
+            readOnly
+          />
+        </div>
         <div>
           <label className={`${styles.label}`} htmlFor="quantidade">
             QUANTIDADE
@@ -63,9 +86,8 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
             type="text"
             name="quantidade"
             id="quantidade"
-            value={inputQuantidade}
-            onChange={(ev) => setInputQuantidade(ev.target.value)}
-            readOnly
+            value={qtdVendida}
+            onChange={(ev) => setQtdVendida(ev.target.value)}
           />
         </div>
         <div className={`${styles.container__descricao}`}>
@@ -86,13 +108,7 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
               {itemFiltrado.map((item, index) => (
                 <li
                   key={index}
-                  onClick={() =>
-                    handleItemClick(
-                      item.produto,
-                      item.custo_venda,
-                      item.quantidade
-                    )
-                  }
+                  onClick={() => handleItemClick(item)}
                   style={{ cursor: "pointer" }}
                 >
                   {item.produto}
@@ -116,7 +132,11 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
         </div>
       </div>
       <div className={`${styles.display} ${styles.justify__center}`}>
-        <Botao acaoBotao="adicionar" tipo="primario" onClick={handleAdd}>
+        <Botao
+          acaoBotao="adicionar"
+          tipo="primario"
+          onClick={() => handleAdd()}
+        >
           Adicionar
         </Botao>
         <Botao acaoBotao="limpar" tipo="secundario" onClick={handleClear}>
