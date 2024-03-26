@@ -5,6 +5,7 @@ import { IItem } from "interface/IItem";
 import { IProduto, IValorTotal } from "interface/IProduto";
 import Botao from "components/botao/Botao";
 
+
 interface InputVendasProps {
   adicionarProduto: (produto: IValorTotal) => void;
 }
@@ -16,6 +17,8 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
   const [inputPreco, setInputPreco] = useState("");
   const [qtdVendida, setQtdVendida] = useState("");
   const [itemSelecionado, setItemSelecionado] = useState<IProduto | null>(null);
+
+  
 
   const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const value = ev.target.value;

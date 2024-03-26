@@ -1,0 +1,47 @@
+@import "styles/variaveis.css";
+
+.container {
+  margin: 1rem auto;
+  width: 60%;
+}
+
+.container__list {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 350px;
+  overflow-y: auto;
+}
+
+.titulo__tabela {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0.5rem;
+}
+
+.tabela {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tabela th, .tabela td {
+  width: 350px;
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.tabela th:nth-child(2),
+.tabela td:nth-child(2) {
+  width: 20%;
+}
+
+.tabela th {
+  font-weight: 900;
+}
+
+.borda {
+  border: 1px solid red;
+}

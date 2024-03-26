@@ -6,7 +6,6 @@ interface ListaVendasProps {
 }
 
 export default function ListaVendas({ produtos }: ListaVendasProps) {
-
   return (
     <section className={styles.container}>
       <div className={styles.container__list}>

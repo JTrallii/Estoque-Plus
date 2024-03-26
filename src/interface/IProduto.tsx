@@ -11,4 +11,5 @@ export interface IQuantProduto extends IProduto {
 
 export interface IValorTotal extends IQuantProduto {
   valorTotal?: number
+  data?: string
 }

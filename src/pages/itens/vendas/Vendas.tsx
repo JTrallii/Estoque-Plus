@@ -1,30 +1,29 @@
-import { useState } from "react";
-import { IProduto, IValorTotal } from "interface/IProduto";
-import InputVendas from "./venda/InputVenda";
+import styles from "./vendas.module.css";
+import InputVendas from "./inputVendas/InputVenda";
 import ListaVendas from "./listaVendas/ListaVendas";
-import ValorCompras from "./valorCompras/ValorCompras";
+import { useProdutos } from "utils/produtos";
+import Botao from "components/botao/Botao";
+import ValorTotalDaVenda from "./valorCompras/ValorTotalDaVenda";
 
 export default function Vendas() {
-  const [produtosSelecionados, setProdutosSelecionados] = useState<
-    IValorTotal[]
-  >([]);
+  const { produtosSelecionados, adicionarProduto, somaTotal, setListaVendas } = useProdutos();
 
-  const somaTotal = produtosSelecionados.reduce(
-    (total, produto) => total + (produto.valorTotal || 0),
-    0
-  );
-
-  const adicionarProduto = (produto: IProduto) => {
-    const novoProduto = { ...produto };
-    setProdutosSelecionados([...produtosSelecionados, novoProduto]);
-    console.log(produtosSelecionados);
+  const handleClick = () => {
+    setListaVendas(produtosSelecionados);
   };
 
   return (
-    <main>
+    <main className={styles.container}>
       <InputVendas adicionarProduto={adicionarProduto} />
       <ListaVendas produtos={produtosSelecionados} />
-      <ValorCompras valorTotal={somaTotal} />
+      <ValorTotalDaVenda valorTotal={somaTotal} />
+      <Botao
+        acaoBotao="fecharVenda"
+        tipo="primario"
+        onClick={handleClick}
+      >
+        FECHAR VENDA
+      </Botao>
     </main>
   );
 }
