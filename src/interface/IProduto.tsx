@@ -1,7 +1,8 @@
 export interface IProduto {
   produto: string, 
   custo_venda: number, 
-  quantidade: number
+  quantidade: number,
+  id?: number
 }
 
 export interface IQuantProduto extends IProduto {

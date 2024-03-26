@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./inputVenda.module.css";
 import produtos from "data/estoque.json";
 import { IItem } from "interface/IItem";
-import { IProduto, IQuantProduto, IValorTotal } from "interface/IProduto";
+import { IProduto, IValorTotal } from "interface/IProduto";
 import Botao from "components/botao/Botao";
 
 interface InputVendasProps {
@@ -37,17 +37,52 @@ export default function InputVendas({ adicionarProduto }: InputVendasProps) {
 
   const handleAdd = () => {
     if (itemSelecionado) {
-      adicionarProduto({
-        produto: itemSelecionado.produto,
-        custo_venda: itemSelecionado.custo_venda,
-        quantidade: +qtdVendida,
-        valorTotal: +qtdVendida * itemSelecionado.custo_venda
-      });
+      const quantidade = +qtdVendida;
+      if (quantidade <= 0) {
+        alert("A quantidade não pode ser menor ou igual a 0 !");
+        setQtdVendida("");
+        return;
+      }
+
+      const indiceProduto = produtos.findIndex(
+        (produto) => produto.id === itemSelecionado.id
+      );
+      if (indiceProduto !== -1) {
+        const produtoAtt = [...produtos];
+
+        if (itemSelecionado.quantidade < +qtdVendida) {
+          alert(
+            `O item ${itemSelecionado.produto} não tem quantidade suficiente em estoque !`
+          );
+          setQtdVendida("");
+          return;
+        }
+        produtoAtt[indiceProduto].quantidade -= quantidade;
+        if (produtoAtt[indiceProduto].quantidade < 0) {
+          alert(
+            `O item ${itemSelecionado.produto} não tem quantidade suficiente em estoque !`
+          );
+          setQtdVendida("");
+          return;
+        }
+
+        setItemFiltrado(produtoAtt);
+
+        adicionarProduto({
+          produto: itemSelecionado.produto,
+          custo_venda: itemSelecionado.custo_venda,
+          quantidade: +qtdVendida,
+          valorTotal: +qtdVendida * itemSelecionado.custo_venda,
+        });
+      }
+
       setInputProduto("");
       setInputQuantidade("");
       setInputPreco("");
       setQtdVendida("");
       setItemSelecionado(null);
+    } else {
+      alert("Item selecionado não encontrado no estoque !");
     }
   };
 

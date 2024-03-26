@@ -58,8 +58,11 @@
 }
 
 .container__descricao__ul li {
-  border-bottom: 1px solid var(--azul-petroleo);
-  padding: 10px 0;
+  border-bottom: 1px solid var(--cinza-escuro);
+  background-color: var(--azul-petroleo);
+  padding: 10px 10px;
+  color: var(--branco);
+  font-size: 1.5rem;
 }
 
 .container__descricao {
