@@ -2,7 +2,11 @@ package plus.estoque.domain.produtos;
 
 import jakarta.persistence.*;
 import lombok.*;
+import plus.estoque.domain.fornecedor.Fornecedor;
 import plus.estoque.domain.produtos.enums.*;
+import plus.estoque.domain.vendas.Venda;
+
+import java.math.BigDecimal;
 
 @Table(name = "produtos")
 @Entity(name = "Produto")
@@ -16,20 +20,35 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String produto;
+
+    @Column(nullable = false, unique = true)
     private String codigoBarras;
 
-    @Embedded
-    private String fornecedor;
+    @ManyToOne
+    @JoinColumn(name = "fornecedor_id")
+    private Fornecedor fornecedor;
 
+    @Column(nullable = false)
     private String descricao;
+
     private String marca;
     private String modelo;
     private String sku;
-    private Double precoVenda;
-    private Double precoCusto;
-    private Double qtdEstoque;
-    private Double qtdMinimaEstoque;
+
+    @Column(nullable = false)
+    private BigDecimal precoVenda;
+
+    @Column(nullable = false)
+    private BigDecimal precoCusto;
+
+    @Column(nullable = false)
+    private BigDecimal qtdEstoque;
+
+    @Column(nullable = false)
+    private BigDecimal qtdMinimaEstoque;
 
 
     @Enumerated(EnumType.STRING)
@@ -46,6 +65,9 @@ public class Produto {
 
     @Enumerated(EnumType.STRING)
     private UnidadeVolume unidadeVolume;
+
+    @ManyToOne
+    private Venda venda;
 
 }
 

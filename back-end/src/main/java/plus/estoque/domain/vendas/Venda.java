@@ -2,12 +2,9 @@ package plus.estoque.domain.vendas;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.*;
 import plus.estoque.domain.produtos.Produto;
 import plus.estoque.domain.vendas.enums.FormaPagamento;
-import plus.estoque.dto.produtos.DadosProdutosParaVenda;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,8 +24,10 @@ public class Venda {
     private LocalDateTime dataVenda;
     private Double valorTotalVenda;
     private Double quantidadeItem;
-    @Valid
-    private List<DadosProdutosParaVenda> produto;
+
+
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Produto> produto;
 
 
     @Enumerated(EnumType.STRING)
@@ -37,3 +36,29 @@ public class Venda {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

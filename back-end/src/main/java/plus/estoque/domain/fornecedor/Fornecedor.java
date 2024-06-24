@@ -11,7 +11,6 @@ import plus.estoque.domain.endereco.Endereco;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Embeddable
 public class Fornecedor {
 
         @Id
