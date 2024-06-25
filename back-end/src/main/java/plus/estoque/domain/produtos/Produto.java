@@ -45,10 +45,10 @@ public class Produto {
     private BigDecimal precoCusto;
 
     @Column(nullable = false)
-    private BigDecimal qtdEstoque;
+    private Double qtdEstoque;
 
     @Column(nullable = false)
-    private BigDecimal qtdMinimaEstoque;
+    private Double qtdMinimaEstoque;
 
 
     @Enumerated(EnumType.STRING)
@@ -65,9 +65,6 @@ public class Produto {
 
     @Enumerated(EnumType.STRING)
     private UnidadeVolume unidadeVolume;
-
-    @ManyToOne
-    private Venda venda;
 
 }
 
