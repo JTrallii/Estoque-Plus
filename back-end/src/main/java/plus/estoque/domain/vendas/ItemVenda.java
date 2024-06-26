@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import plus.estoque.domain.produtos.Produto;
-
 import java.math.BigDecimal;
 
 @Entity(name = "Item_Venda")

@@ -15,7 +15,6 @@ public record DadosCadastroFornecedor(
         @NotBlank
         @Pattern(regexp = "\\d{14}")
         String cnpj,
-        @NotBlank
         String telefone,
         @NotBlank
         String celular,
