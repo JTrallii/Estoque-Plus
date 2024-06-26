@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import plus.estoque.domain.fornecedor.Fornecedor;
 import plus.estoque.domain.produtos.enums.*;
-import plus.estoque.domain.vendas.Venda;
+import plus.estoque.dto.produtos.DadosCadastroProduto;
 
 import java.math.BigDecimal;
 
@@ -66,7 +66,26 @@ public class Produto {
     @Enumerated(EnumType.STRING)
     private UnidadeVolume unidadeVolume;
 
-}
+    public Produto(DadosCadastroProduto dados) {
+            this.produto = dados.produto();
+            this.codigoBarras = dados.codigoBarras();
+            this.fornecedor = dados.fornecedor();
+            this.descricao = dados.descricao();
+            this.marca = dados.marca();
+            this.modelo = dados.modelo();
+            this.sku = dados.sku();
+            this.precoVenda = dados.precoVenda();
+            this.precoCusto = dados.precoCusto();
+            this.qtdEstoque = dados.qtdEstoque();
+            this.qtdMinimaEstoque = dados.qtdMinimaEstoque();
+            this.categoriaProduto = dados.categoriaProduto();
+            this.material = dados.material();
+            this.unidadeDimensao = dados.unidadeDimensao();
+            this.unidadePeso = dados.unidadePeso();
+            this.unidadeVolume = dados.unidadeVolume();
+        }
+    }
+
 
 
 
