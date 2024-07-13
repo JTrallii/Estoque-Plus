@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 import plus.estoque.domain.fornecedor.Fornecedor;
 import plus.estoque.domain.produtos.enums.*;
+import plus.estoque.dto.produtos.DadosAtualizarProduto;
 import plus.estoque.dto.produtos.DadosCadastroProduto;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Table(name = "produtos")
 @Entity(name = "Produto")
@@ -17,9 +19,13 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(of = "id")
 public class Produto {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Setter
+    private Boolean ativo;
 
     @Column(nullable = false)
     private String produto;
@@ -83,8 +89,36 @@ public class Produto {
             this.unidadeDimensao = dados.unidadeDimensao();
             this.unidadePeso = dados.unidadePeso();
             this.unidadeVolume = dados.unidadeVolume();
+            this.ativo = true;
+        }
+
+
+    public void atualizarInformacoes(DadosAtualizarProduto dados) {
+        if (dados != null) {
+            this.produto = Optional.ofNullable(dados.produto()).orElse(this.produto);
+            this.codigoBarras = Optional.ofNullable(dados.codigoBarras()).orElse(this.codigoBarras);
+            this.fornecedor = Optional.ofNullable(dados.fornecedor()).orElse(this.fornecedor);
+            this.descricao = Optional.ofNullable(dados.descricao()).orElse(this.descricao);
+            this.marca = Optional.ofNullable(dados.marca()).orElse(this.marca);
+            this.modelo = Optional.ofNullable(dados.modelo()).orElse(this.modelo);
+            this.sku = Optional.ofNullable(dados.sku()).orElse(this.sku);
+            this.precoVenda = Optional.ofNullable(dados.precoVenda()).orElse(this.precoVenda);
+            this.precoCusto = Optional.ofNullable(dados.precoCusto()).orElse(this.precoCusto);
+            this.qtdEstoque = Optional.ofNullable(dados.qtdEstoque()).orElse(this.qtdEstoque);
+            this.qtdMinimaEstoque = Optional.ofNullable(dados.qtdMinimaEstoque()).orElse(this.qtdMinimaEstoque);
+            this.categoriaProduto = Optional.ofNullable(dados.categoriaProduto()).orElse(this.categoriaProduto);
+            this.material = Optional.ofNullable(dados.material()).orElse(this.material);
+            this.unidadeDimensao = Optional.ofNullable(dados.unidadeDimensao()).orElse(this.unidadeDimensao);
+            this.unidadePeso = Optional.ofNullable(dados.unidadePeso()).orElse(this.unidadePeso);
+            this.unidadeVolume = Optional.ofNullable(dados.unidadeVolume()).orElse(this.unidadeVolume);
         }
     }
+
+    public void excluir() {
+        this.ativo = false;
+    }
+
+}
 
 
 
