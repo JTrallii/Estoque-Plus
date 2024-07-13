@@ -24,7 +24,7 @@ public class ProdutoController {
     @PostMapping
     @Transactional
     public ResponseEntity<DadosDetalhamentoProduto> cadastrar(@RequestBody @Valid DadosCadastroProduto dados, UriComponentsBuilder uriBuilder) {
-        Produto produto = produtoService.cadastrar(dados);
+        Produto produto = produtoService.cadastrarProduto(dados);
 
         var uri = uriBuilder.path("/produtos/{id}")
                 .buildAndExpand(produto.getId())
